@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
 
 
-const todoStorage = JSON.parse(localStorage.getItem('savedstate'));
+const todoStorage = JSON.parse(localStorage.getItem('savedstate')) || [];
 
 
 const initialState = {
