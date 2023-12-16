@@ -168,3 +168,4 @@ Use `useSelector` hook to select the value from the store.
     const counter = useSelector(state => state.counter);
 ```
 
+Here the slice name `counter` must match with the reducer name in `store.js`.
