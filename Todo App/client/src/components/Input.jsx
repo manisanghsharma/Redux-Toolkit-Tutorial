@@ -2,6 +2,7 @@ import { Plus } from "react-feather"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { addTodo } from "../store/slices/todoSlice";
+import {increment} from "../store/slices/counterSlice"
 
 const Input = () => {
     const [input, setInput] = useState("");
@@ -10,6 +11,7 @@ const Input = () => {
         e.preventDefault();
         if(input){
             dispatch(addTodo(input));
+            dispatch(increment());
 			setInput("");
         }
     }

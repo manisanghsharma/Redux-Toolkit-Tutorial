@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
 
-
-const todoStorage = JSON.parse(localStorage.getItem('savedstate')) || [];
-
-
 const initialState = {
-	todos: todoStorage.todos || [],
-    count: todoStorage.count || 0
-}
+	todos: JSON.parse(localStorage.getItem("savedstate")) || [],
+};
 
 const saveTodos = (list) => {
     localStorage.setItem('savedstate', JSON.stringify(list))
@@ -25,26 +20,15 @@ const todoSlice = createSlice({
                 checked: false
             }
             state.todos.push(todo);
-            state.count += 1;
-            saveTodos(state);
+            saveTodos(state.todos);
         },
         deleteTodo: (state, action) => {
-            const idx = state.todos.findIndex(
-                (item) => item.id === action.payload
-                );
-                if (state.todos[idx].checked === false){
-                    state.count -= 1;
-                }
-                state.todos = (state.todos).filter(todo => todo.id !== action.payload);
-            
-            
-            saveTodos(state);
+            state.todos = (state.todos).filter(todo => todo.id !== action.payload);
+            saveTodos(state.todos);
         },
         toggleCheck: (state, action) => {
-            const idx = state.todos.findIndex(item => item.id === action.payload)
-            state.todos[idx].checked = !state.todos[idx].checked;
-            state.count = state.todos[idx].checked ? state.count-1 : state.count+1;
-            saveTodos(state);
+            state.todos = state.todos.map(x => x.id === action.payload ? {...x, checked: !x.checked} : x)
+            saveTodos(state.todos);
         }
     }
 
