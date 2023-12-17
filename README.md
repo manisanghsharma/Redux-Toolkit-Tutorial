@@ -169,3 +169,12 @@ Use `useSelector` hook to select the value from the store.
 ```
 
 Here the slice name `counter` must match with the reducer name in `store.js`.
+
+# Projects
+
+## 1. Toodify - A Minimalistic Todo List App
+![Toodify](https://i.imgur.com/U91dI4a.png)
+
+
+[Toodify](https://toodify.netlify.app/)
+
